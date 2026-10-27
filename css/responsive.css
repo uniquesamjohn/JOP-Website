@@ -1,0 +1,166 @@
+/* ==========================================================================
+   JOP CBT CENTER — RESPONSIVE STYLESHEET
+   Mobile-First and Responsive Adjustments (Desktop, Tablet, Mobile)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. LAPTOP & TABLET (Max-Width: 1024px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-graphic {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. TABLET & LARGE MOBILE (Max-Width: 768px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  :root {
+    --section-padding-y: 3.5rem;
+    --section-padding-x: 1.25rem;
+  }
+
+  .site-header {
+    height: 72px;
+  }
+
+  .nav-container {
+    height: 72px;
+  }
+
+  .mobile-nav {
+    top: 72px;
+    height: calc(100vh - 72px);
+  }
+
+  .hero-title {
+    font-size: 2.15rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .hero-stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-grid,
+  .cards-grid-3,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .cta-banner {
+    padding: 3rem 1.5rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. SMALL MOBILE DEVICES (Max-Width: 480px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 480px) {
+  .brand-logo-img {
+    height: 36px;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card-glass-dark {
+    padding: 1.5rem;
+  }
+
+  .contact-form-card {
+    padding: 1.5rem;
+  }
+
+  .in-progress-placeholder {
+    padding: 2rem 1.25rem;
+  }
+
+  .placeholder-title {
+    font-size: 1.3rem;
+  }
+
+  .placeholder-status {
+    font-size: 1rem;
+  }
+}

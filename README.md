@@ -24,7 +24,7 @@ Developed using semantic **HTML5**, modern **CSS3** (utilizing a custom gradient
 ```text
 JOP Website/
 │
-├── index.html              # Redesigned Homepage (Hero, WAEC & JAMB Accreditation, Institutional Trust, Who We Serve, Core Services, Infrastructure Preview, Partnership Form, Final CTA)
+├── index.html              # Homepage (Hero, Welcome, Services, CBT Benefits, Infrastructure, CTA, Footer)
 ├── services.html           # Services Page (Detailed breakdown of all 6 core service categories)
 ├── about.html              # About Us (Who We Are, Mission & Vision, Core Values, Board of Directors, Management, Gallery)
 ├── resources.html          # Resources & Infrastructure (250 Primary Workstations + ~50 Backup, 24/7 Power, Accreditation, CCTV, Biometrics, Internet)
@@ -32,15 +32,15 @@ JOP Website/
 │
 ├── css/
 │   ├── style.css           # Global design tokens, gradients, typography, components, animations
-│   └── responsive.css      # Breakpoint-specific layout adjustments for desktop (1440px, 1024px), tablet (768px), and mobile (375px)
+│   └── responsive.css      # Breakpoint-specific layout adjustments for desktop, tablet, and mobile
 │
 ├── js/
-│   └── script.js           # Centralised JOP_SITE_CONFIG, mobile navigation, scroll observer, partnership & enquiry form validation
+│   └── script.js           # Mobile drawer navigation, active link detection, scroll observer, form validation
 │
 ├── assets/
 │   ├── images/             # Verified facility photographs (CBT hall, solar installations, gate, compound)
 │   ├── icons/              # Scalable iconography
-│   └── logo/               # JOP banner, vector SVG, and official WAEC & JAMB accreditation logos (waec-logo.png, jamb-logo.png)
+│   └── logo/               # Vector logo SVG and official banner
 │
 └── README.md               # Project documentation and deployment instructions
 ```

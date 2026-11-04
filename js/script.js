@@ -1,112 +1,20 @@
 /**
  * ============================================================================
- * JOP CBT CENTRE — MASTER JAVASCRIPT & CENTRAL CONFIGURATION
- * Accessible Navigation, Centralised Data Config, Scroll Observers,
- * Partnership & Inspection Form Validation, and Dynamic UI
+ * JOP CBT CENTER — MASTER JAVASCRIPT
+ * Accessible Navigation, Scroll Observers, Form Validation & Dynamic UI
  * ============================================================================
  */
-
-/**
- * Centralised configuration for JOP CBT Centre operational specifications,
- * WAEC & JAMB accreditation metadata, and backend/enquiry endpoints.
- *
- * COMPLIANCE NOTE: Management has confirmed WAEC and JAMB accreditation.
- * Before final production release, verify physical accreditation certificates,
- * centre code records, and logo usage permissions, then set
- * `managementVerificationPending: false`.
- */
-const JOP_SITE_CONFIG = Object.freeze({
-  centreName: 'JOP CBT Centre',
-  location: {
-    city: 'Abeokuta',
-    state: 'Ogun State',
-    address:
-      '4 Ijoko Lane, opposite Lisabi Nursery and Primary School, Erunbe, Abeokuta 110222, Ogun State',
-  },
-  contact: {
-    phoneDisplay: '+234 803 726 2757',
-    whatsappNumber: '2348037262757',
-    businessHours: 'Mon–Sat: 8:00 AM – 6:00 PM',
-    // Optional REST endpoint (e.g. Formspree or institutional API gateway).
-    // Keep empty in client-side code unless a public form endpoint is configured.
-    partnershipEndpoint: '',
-  },
-  capacity: {
-    primaryWorkstations: 250,
-    backupComputers: '~50',
-    totalAvailableSystems: '300',
-  },
-  accreditation: {
-    heroBadgeText: 'WAEC & JAMB Accredited CBT Centre',
-    sectionHeading: 'Accredited by Leading Examination Bodies',
-    sectionDescription:
-      'JOP CBT Centre is accredited by the West African Examinations Council (WAEC) and the Joint Admissions and Matriculation Board (JAMB), reflecting our commitment to maintaining recognised standards for computer-based examination delivery.',
-    managementVerificationPending: true,
-    bodies: {
-      waec: {
-        id: 'waec',
-        shortName: 'WAEC',
-        fullName: 'West African Examinations Council',
-        statusLabel: 'Accredited Centre',
-        logoSrc: 'assets/logo/waec-logo.png',
-        logoAlt: 'Official logo of the West African Examinations Council (WAEC)',
-        verificationStatus: 'Accredited CBT Centre (Subject to final certificate publication sign-off)',
-      },
-      jamb: {
-        id: 'jamb',
-        shortName: 'JAMB',
-        fullName: 'Joint Admissions and Matriculation Board',
-        statusLabel: 'Accredited Centre',
-        logoSrc: 'assets/logo/jamb-logo.png',
-        logoAlt: 'Official logo of the Joint Admissions and Matriculation Board (JAMB)',
-        verificationStatus: 'Accredited CBT Centre (Subject to final certificate publication sign-off)',
-      },
-    },
-  },
-});
-
-window.JOP_SITE_CONFIG = JOP_SITE_CONFIG;
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
   // --------------------------------------------------------------------------
-  // 1. DYNAMIC COPYRIGHT YEAR & CENTRALISED DATA BINDING
+  // 1. DYNAMIC COPYRIGHT YEAR
   // --------------------------------------------------------------------------
   const currentYearSpan = document.getElementById('current-year');
   if (currentYearSpan) {
     currentYearSpan.textContent = new Date().getFullYear();
   }
-
-  // Bind centralised workstation capacity figures across the DOM
-  document.querySelectorAll('[data-jop-stat="primary-workstations"]').forEach((el) => {
-    el.textContent = String(JOP_SITE_CONFIG.capacity.primaryWorkstations);
-  });
-
-  document.querySelectorAll('[data-jop-stat="backup-computers"]').forEach((el) => {
-    el.textContent = String(JOP_SITE_CONFIG.capacity.backupComputers);
-  });
-
-  // Bind centralised accreditation data to accreditation cards if present
-  Object.values(JOP_SITE_CONFIG.accreditation.bodies).forEach((body) => {
-    const card = document.querySelector(`[data-accreditation-card="${body.id}"]`);
-    if (!card) return;
-
-    const imgEl = card.querySelector('[data-accreditation-logo]');
-    if (imgEl) {
-      imgEl.setAttribute('src', body.logoSrc);
-      imgEl.setAttribute('alt', body.logoAlt);
-    }
-
-    const shortEl = card.querySelector('[data-accreditation-short]');
-    if (shortEl) shortEl.textContent = body.shortName;
-
-    const fullEl = card.querySelector('[data-accreditation-full]');
-    if (fullEl) fullEl.textContent = body.fullName;
-
-    const statusEl = card.querySelector('[data-accreditation-status]');
-    if (statusEl) statusEl.textContent = body.statusLabel;
-  });
 
   // --------------------------------------------------------------------------
   // 2. ACTIVE NAVIGATION LINK DETECTION & MAGNETIC SLIDING INDICATOR
@@ -114,37 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.nav-link');
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
-  const setActiveNavLinks = (activeHash = '') => {
-    navLinks.forEach((link) => {
-      const href = link.getAttribute('href') || '';
-      const [linkPage, linkHash] = href.split('#');
-      const normalizedPage = linkPage || 'index.html';
-
-      let isMatch = false;
-      if (activeHash && (currentPath === 'index.html' || currentPath === '')) {
-        isMatch = linkHash && `#${linkHash}` === activeHash;
-      } else {
-        isMatch =
-          !linkHash &&
-          (normalizedPage === currentPath || (currentPath === '' && normalizedPage === 'index.html'));
-      }
-
-      if (isMatch) {
-        link.classList.add('active');
-        link.setAttribute('aria-current', 'page');
-      } else {
-        link.classList.remove('active');
-        link.removeAttribute('aria-current');
-      }
-    });
-  };
-
-  setActiveNavLinks();
+  navLinks.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.classList.remove('active');
+      link.removeAttribute('aria-current');
+    }
+  });
 
   const desktopNav = document.querySelector('.desktop-nav');
-  let moveIndicatorTo = () => {};
-  let getActiveDesktopLink = () => null;
-
   if (desktopNav) {
     const desktopLinks = desktopNav.querySelectorAll('.nav-link');
     const indicator = document.createElement('span');
@@ -153,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     desktopNav.appendChild(indicator);
     desktopNav.classList.add('has-sliding-indicator');
 
-    moveIndicatorTo = (targetLink) => {
+    const moveIndicatorTo = (targetLink) => {
       if (!targetLink) {
         indicator.style.opacity = '0';
         return;
@@ -167,8 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
       indicator.style.opacity = '1';
     };
 
-    getActiveDesktopLink = () => desktopNav.querySelector('.nav-link.active');
+    const getActiveDesktopLink = () => desktopNav.querySelector('.nav-link.active');
 
+    // Initial position after layout & entrance animations settle
     requestAnimationFrame(() => {
       moveIndicatorTo(getActiveDesktopLink());
     });
@@ -209,35 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
-  // Highlight in-page sections (#accreditation, #partnerships) on homepage scroll
-  if (currentPath === 'index.html' || currentPath === '') {
-    const trackedSections = ['accreditation', 'partnerships']
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    if (trackedSections.length) {
-      const updateSectionNavOnScroll = () => {
-        const scrollPos = window.scrollY + 180;
-        let matchedHash = '';
-
-        trackedSections.forEach((sec) => {
-          const top = sec.offsetTop;
-          const bottom = top + sec.offsetHeight;
-          if (scrollPos >= top && scrollPos < bottom) {
-            matchedHash = `#${sec.id}`;
-          }
-        });
-
-        setActiveNavLinks(matchedHash);
-        if (desktopNav && !desktopNav.classList.contains('is-hovering-nav')) {
-          moveIndicatorTo(getActiveDesktopLink());
-        }
-      };
-
-      window.addEventListener('scroll', updateSectionNavOnScroll, { passive: true });
-    }
-  }
-
   // --------------------------------------------------------------------------
   // 3. RESPONSIVE MOBILE NAVIGATION
   // --------------------------------------------------------------------------
@@ -257,12 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleMenu();
     });
 
+    // Close when clicking any nav link in mobile view
     mobileNav.querySelectorAll('.nav-link, .btn').forEach((link) => {
       link.addEventListener('click', () => {
         toggleMenu(false);
       });
     });
 
+    // Close on click outside
     document.addEventListener('click', (e) => {
       if (
         mobileNav.classList.contains('open') &&
@@ -273,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
         toggleMenu(false);
@@ -322,12 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach((el) => revealObserver.observe(el));
   } else {
+    // If reduced motion is requested or IntersectionObserver is not supported
     revealElements.forEach((el) => el.classList.add('is-visible'));
   }
 
   // --------------------------------------------------------------------------
-  // 6. SHARED VALIDATION HELPERS & WHATSAPP NUMBER RESOLUTION
+  // 6. CONTACT FORM VALIDATION & WHATSAPP ENQUIRY REDIRECTION (PAGE & MODAL)
   // --------------------------------------------------------------------------
+  // Extract published JOP phone number from the page and format internationally without +, spaces, or leading zeroes
   const getPublishedWhatsAppNumber = () => {
     const telLink = document.querySelector('a[href^="tel:"]');
     if (telLink) {
@@ -337,69 +203,62 @@ document.addEventListener('DOMContentLoaded', () => {
         return digitsOnly.startsWith('234') ? digitsOnly : `234${digitsOnly}`;
       }
     }
-    return JOP_SITE_CONFIG.contact.whatsappNumber;
+    return '2348037262757';
   };
 
-  const validateFormControl = (input) => {
-    const value = input.value.trim();
-    const feedbackEl = document.getElementById(`${input.id}-error`);
-    let isValid = true;
-    let errorMsg = '';
-
-    if (input.hasAttribute('required') && !value) {
-      isValid = false;
-      errorMsg =
-        input.tagName === 'SELECT'
-          ? 'Please select an option.'
-          : 'This field is required.';
-    } else if (input.type === 'email' && value) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) {
-        isValid = false;
-        errorMsg = 'Please enter a valid official email address.';
-      }
-    } else if (input.type === 'tel' && value) {
-      const phoneRegex = /^[+0-9\s\-()]{7,20}$/;
-      if (!phoneRegex.test(value)) {
-        isValid = false;
-        errorMsg = 'Please enter a valid telephone number.';
-      }
-    } else if (input.type === 'number' && value) {
-      const numVal = Number(value);
-      if (Number.isNaN(numVal) || numVal < 1) {
-        isValid = false;
-        errorMsg = 'Please enter a valid number of candidates (at least 1).';
-      }
-    }
-
-    if (feedbackEl) {
-      if (!isValid) {
-        feedbackEl.textContent = errorMsg;
-        feedbackEl.classList.add('error');
-        input.setAttribute('aria-invalid', 'true');
-      } else {
-        feedbackEl.textContent = '';
-        feedbackEl.classList.remove('error');
-        input.removeAttribute('aria-invalid');
-      }
-    }
-
-    return isValid;
-  };
-
-  // --------------------------------------------------------------------------
-  // 6A. CONTACT FORM VALIDATION & WHATSAPP ENQUIRY REDIRECTION (CONTACT & MODAL)
-  // --------------------------------------------------------------------------
   const initWhatsAppEnquiryForm = (formElement, statusAlertElement) => {
     if (!formElement) return;
 
+    const validateField = (input) => {
+      const value = input.value.trim();
+      const feedbackEl = document.getElementById(`${input.id}-error`);
+      let isValid = true;
+      let errorMsg = '';
+
+      if (input.hasAttribute('required') && !value) {
+        isValid = false;
+        errorMsg =
+          input.tagName === 'SELECT'
+            ? 'Please select an enquiry type.'
+            : 'This field is required.';
+      } else if (input.type === 'email' && value) {
+        // RFC 5322 standard email regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+          isValid = false;
+          errorMsg = 'Please enter a valid email address.';
+        }
+      } else if (input.type === 'tel' && value) {
+        // Simple international & local phone verification
+        const phoneRegex = /^[+0-9\s\-()]{7,20}$/;
+        if (!phoneRegex.test(value)) {
+          isValid = false;
+          errorMsg = 'Please enter a valid telephone number.';
+        }
+      }
+
+      if (feedbackEl) {
+        if (!isValid) {
+          feedbackEl.textContent = errorMsg;
+          feedbackEl.classList.add('error');
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          feedbackEl.textContent = '';
+          feedbackEl.classList.remove('error');
+          input.removeAttribute('aria-invalid');
+        }
+      }
+
+      return isValid;
+    };
+
     const inputs = formElement.querySelectorAll('input, select, textarea');
     inputs.forEach((input) => {
-      input.addEventListener('blur', () => validateFormControl(input));
-      input.addEventListener('change', () => validateFormControl(input));
+      input.addEventListener('blur', () => validateField(input));
+      input.addEventListener('change', () => validateField(input));
       input.addEventListener('input', () => {
         if (input.getAttribute('aria-invalid') === 'true') {
-          validateFormControl(input);
+          validateField(input);
         }
       });
     });
@@ -409,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let isFormValid = true;
       inputs.forEach((input) => {
-        if (!validateFormControl(input)) {
+        if (!validateField(input)) {
           isFormValid = false;
         }
       });
@@ -443,13 +302,18 @@ document.addEventListener('DOMContentLoaded', () => {
         'Hello JOP CBT Centre,',
         '',
         `My name is ${name}.`,
+        '',
         `Email: ${email}`,
+        '',
         `Phone: ${phone}`,
+        '',
         `Enquiry Type: ${subjectText}`,
         '',
         `Message: ${message}`,
         '',
-        'Thank you.',
+        'I would like to make an enquiry about your services.',
+        '',
+        'Thank you.'
       ].join('\n');
 
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -466,208 +330,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Initialize the on-page Contact Form (contact.html)
   const contactForm = document.getElementById('contact-form');
   const formFeedback = document.getElementById('form-status-alert');
   initWhatsAppEnquiryForm(contactForm, formFeedback);
 
   // --------------------------------------------------------------------------
-  // 6B. INSTITUTIONAL PARTNERSHIP & FACILITY INSPECTION ENQUIRY FORM
-  // --------------------------------------------------------------------------
-  const partnershipForm = document.getElementById('partnership-form');
-  if (partnershipForm) {
-    const partnerInputs = partnershipForm.querySelectorAll('input, select, textarea');
-    const submitBtn = document.getElementById('partnership-submit-btn');
-    const submitBtnLabel = document.getElementById('partnership-submit-label');
-    const submitSpinner = document.getElementById('partnership-submit-spinner');
-    const successBanner = document.getElementById('partnership-form-success');
-    const errorBanner = document.getElementById('partnership-form-error');
-    const errorBannerText = document.getElementById('partnership-form-error-text');
-    const intentBadge = document.getElementById('partnership-form-intent-badge');
-    const serviceSelect = document.getElementById('partner-required-service');
-
-    // Minimum date for preferred examination date is today
-    const preferredDateInput = document.getElementById('partner-preferred-date');
-    if (preferredDateInput) {
-      const todayIso = new Date().toISOString().split('T')[0];
-      preferredDateInput.setAttribute('min', todayIso);
-    }
-
-    partnerInputs.forEach((input) => {
-      input.addEventListener('blur', () => validateFormControl(input));
-      input.addEventListener('change', () => validateFormControl(input));
-      input.addEventListener('input', () => {
-        if (input.getAttribute('aria-invalid') === 'true') {
-          validateFormControl(input);
-        }
-      });
-    });
-
-    // Intent buttons (Book a Facility Inspection, Discuss a Partnership, Request a Proposal, Request a Consultation)
-    document.querySelectorAll('[data-partnership-intent]').forEach((trigger) => {
-      trigger.addEventListener('click', (e) => {
-        const intent = trigger.getAttribute('data-partnership-intent');
-        const targetFormCard = document.getElementById('partnership-form-card') || partnershipForm;
-
-        if (targetFormCard) {
-          e.preventDefault();
-          targetFormCard.classList.add('is-visible');
-          targetFormCard.scrollIntoView({
-            behavior: !prefersReducedMotion ? 'smooth' : 'auto',
-            block: 'start',
-          });
-
-          if (serviceSelect) {
-            if (intent === 'inspection') {
-              serviceSelect.value = 'Facility Inspection & Readiness Assessment';
-              if (intentBadge) intentBadge.textContent = 'Facility Inspection Booking';
-            } else if (intent === 'proposal') {
-              serviceSelect.value = 'Institutional Testing Partnerships';
-              if (intentBadge) intentBadge.textContent = 'Proposal Request';
-            } else if (intent === 'consultation') {
-              serviceSelect.value = 'Digital Assessment and Testing Solutions';
-              if (intentBadge) intentBadge.textContent = 'Assessment Consultation Request';
-            } else {
-              if (!serviceSelect.value) {
-                serviceSelect.value = 'Institutional Testing Partnerships';
-              }
-              if (intentBadge) intentBadge.textContent = 'Institutional Partnership Enquiry';
-            }
-          }
-
-          setTimeout(() => {
-            const orgInput = document.getElementById('partner-org-name');
-            if (orgInput) orgInput.focus({ preventScroll: true });
-          }, 450);
-        }
-      });
-    });
-
-    partnershipForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      if (successBanner) successBanner.style.display = 'none';
-      if (errorBanner) errorBanner.style.display = 'none';
-
-      let isFormValid = true;
-      partnerInputs.forEach((input) => {
-        if (!validateFormControl(input)) {
-          isFormValid = false;
-        }
-      });
-
-      if (!isFormValid) {
-        if (errorBanner) {
-          if (errorBannerText) {
-            errorBannerText.textContent =
-              'Please review the highlighted fields below and complete all required institutional details.';
-          }
-          errorBanner.style.display = 'flex';
-        }
-        const firstInvalid = partnershipForm.querySelector('[aria-invalid="true"]');
-        if (firstInvalid) firstInvalid.focus();
-        return;
-      }
-
-      const payload = {
-        organisationName: document.getElementById('partner-org-name')?.value.trim() || '',
-        contactPerson: document.getElementById('partner-contact-person')?.value.trim() || '',
-        officialEmail: document.getElementById('partner-email')?.value.trim() || '',
-        phoneNumber: document.getElementById('partner-phone')?.value.trim() || '',
-        organisationType: document.getElementById('partner-org-type')?.value.trim() || '',
-        requiredService: document.getElementById('partner-required-service')?.value.trim() || '',
-        expectedCandidates: document.getElementById('partner-candidates')?.value.trim() || '',
-        preferredDate:
-          document.getElementById('partner-preferred-date')?.value.trim() || 'To be scheduled',
-        additionalRequirements:
-          document.getElementById('partner-requirements')?.value.trim() || 'None specified',
-        submittedAt: new Date().toISOString(),
-      };
-
-      // Activate loading indicator state
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.classList.add('is-loading');
-      }
-      if (submitBtnLabel) {
-        submitBtnLabel.textContent = 'Processing Request...';
-      }
-      if (submitSpinner) {
-        submitSpinner.style.display = 'inline-block';
-      }
-
-      try {
-        // If a remote endpoint is configured in JOP_SITE_CONFIG, submit via fetch()
-        if (JOP_SITE_CONFIG.contact.partnershipEndpoint) {
-          const response = await fetch(JOP_SITE_CONFIG.contact.partnershipEndpoint, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-            body: JSON.stringify(payload),
-          });
-
-          if (!response.ok) {
-            throw new Error(`Endpoint returned status ${response.status}`);
-          }
-        } else {
-          // Brief UX transition before launching verified institutional WhatsApp dispatch
-          await new Promise((resolve) => setTimeout(resolve, 550));
-        }
-
-        const whatsappNumber = getPublishedWhatsAppNumber();
-        const whatsappText = [
-          'JOP CBT Centre — Institutional Partnership / Inspection Enquiry',
-          '',
-          `Organisation Name: ${payload.organisationName}`,
-          `Contact Person: ${payload.contactPerson}`,
-          `Official Email: ${payload.officialEmail}`,
-          `Phone Number: ${payload.phoneNumber}`,
-          `Organisation Type: ${payload.organisationType}`,
-          `Required Service: ${payload.requiredService}`,
-          `Expected Candidates: ${payload.expectedCandidates}`,
-          `Preferred Exam / Inspection Date: ${payload.preferredDate}`,
-          '',
-          `Additional Requirements: ${payload.additionalRequirements}`,
-        ].join('\n');
-
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
-
-        if (successBanner) {
-          successBanner.style.display = 'flex';
-          successBanner.focus();
-        }
-
-        const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        if (!newWindow && !JOP_SITE_CONFIG.contact.partnershipEndpoint) {
-          window.location.href = whatsappUrl;
-        }
-      } catch (err) {
-        if (errorBanner) {
-          if (errorBannerText) {
-            errorBannerText.textContent =
-              'We could not reach the automated server gateway. Please use the direct WhatsApp or telephone contact option (+234 803 726 2757) to complete your request immediately.';
-          }
-          errorBanner.style.display = 'flex';
-          errorBanner.focus();
-        }
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('is-loading');
-        }
-        if (submitBtnLabel) {
-          submitBtnLabel.textContent = 'Submit Partnership Enquiry';
-        }
-        if (submitSpinner) {
-          submitSpinner.style.display = 'none';
-        }
-      }
-    });
-  }
-
-  // --------------------------------------------------------------------------
-  // 6C. QUICK WHATSAPP ENQUIRY MODAL ("ENQUIRE NOW" & STEP 01 CARD)
+  // 6B. QUICK WHATSAPP ENQUIRY MODAL ("ENQUIRE NOW" & STEP 01 CARD)
   // --------------------------------------------------------------------------
   const createEnquiryModal = () => {
     if (document.getElementById('enquiry-modal-backdrop')) {
@@ -683,10 +352,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="enquiry-modal-title" aria-describedby="enquiry-modal-subtitle">
         <div class="enquiry-modal-header">
           <div>
-            <span class="enquiry-modal-badge">• DIRECT INSTITUTIONAL &amp; CANDIDATE ENQUIRY</span>
-            <h2 id="enquiry-modal-title" class="enquiry-modal-title">Book an Inspection or Enquire</h2>
+            <span class="enquiry-modal-badge">• A SIMPLE PROCESS — STEP 01</span>
+            <h2 id="enquiry-modal-title" class="enquiry-modal-title">Tell Us What You Need</h2>
             <p id="enquiry-modal-subtitle" class="enquiry-modal-subtitle">
-              Complete your details below to open a pre-filled enquiry with JOP CBT Centre in Abeokuta.
+              Complete your details below to open a pre-filled WhatsApp enquiry with JOP CBT Centre.
             </p>
           </div>
           <button type="button" class="enquiry-modal-close" id="enquiry-modal-close" aria-label="Close enquiry modal">
@@ -710,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <form id="modal-enquiry-form" novalidate aria-label="Quick WhatsApp Enquiry Form">
             <div class="form-group">
-              <label for="modal-contact-name" class="form-label">Full Name / Contact Person <span class="required">*</span></label>
+              <label for="modal-contact-name" class="form-label">Full Name <span class="required">*</span></label>
               <input type="text" id="modal-contact-name" name="name" class="form-input" placeholder="e.g. Adebayo Johnson" required autocomplete="name">
               <div id="modal-contact-name-error" class="form-feedback" aria-live="polite"></div>
             </div>
@@ -718,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="form-row">
               <div class="form-group">
                 <label for="modal-contact-email" class="form-label">Email Address <span class="required">*</span></label>
-                <input type="email" id="modal-contact-email" name="email" class="form-input" placeholder="name@organisation.com" required autocomplete="email">
+                <input type="email" id="modal-contact-email" name="email" class="form-input" placeholder="name@example.com" required autocomplete="email">
                 <div id="modal-contact-email-error" class="form-feedback" aria-live="polite"></div>
               </div>
 
@@ -730,27 +399,26 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
             <div class="form-group">
-              <label for="modal-contact-subject" class="form-label">Enquiry Type <span class="required">*</span></label>
+              <label for="modal-contact-subject" class="form-label">Subject <span class="required">*</span></label>
               <select id="modal-contact-subject" name="subject" class="form-select" required>
                 <option value="">Select an Enquiry Type</option>
-                <option value="facility-inspection">Book a Facility Inspection</option>
-                <option value="test-centre-booking">Computer-Based Examination Hosting / Venue Booking</option>
-                <option value="corporate-testing">Recruitment, Aptitude &amp; Certification Testing</option>
-                <option value="partnership-proposal">Institutional Testing Partnership / Proposal</option>
+                <option value="test-centre-booking">Testing Centre Booking / Assessment Hall Rental</option>
                 <option value="exam-registration">Exam Registration &amp; Result Checking Assistance</option>
+                <option value="corporate-testing">Corporate Recruitment / Certification Testing</option>
+                <option value="general-enquiry">General Information &amp; Facility Inspection</option>
               </select>
               <div id="modal-contact-subject-error" class="form-feedback" aria-live="polite"></div>
             </div>
 
             <div class="form-group">
-              <label for="modal-contact-message" class="form-label">Message &amp; Requirements <span class="required">*</span></label>
-              <textarea id="modal-contact-message" name="message" class="form-textarea" placeholder="Please share your organisation name, preferred inspection or examination date, estimated candidate count, or questions..." required style="min-height: 110px;"></textarea>
+              <label for="modal-contact-message" class="form-label">Message <span class="required">*</span></label>
+              <textarea id="modal-contact-message" name="message" class="form-textarea" placeholder="Please describe your requirements, prospective candidate numbers, or questions..." required style="min-height: 110px;"></textarea>
               <div id="modal-contact-message-error" class="form-feedback" aria-live="polite"></div>
             </div>
 
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
               <button type="submit" class="btn btn-primary btn-lg" style="flex-grow: 1;">
-                Continue via WhatsApp
+                Send Enquiry via WhatsApp
                 <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
@@ -774,20 +442,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCloseBtn = document.getElementById('enquiry-modal-close');
   let lastFocusedTrigger = null;
 
-  const openEnquiryModal = (triggerEl, defaultSubject = '') => {
+  const openEnquiryModal = (triggerEl) => {
     if (!modalBackdrop) return;
     lastFocusedTrigger = triggerEl || document.activeElement;
 
+    // Close mobile nav if open
     if (mobileNav && mobileNav.classList.contains('open')) {
       mobileNav.classList.remove('open');
       if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-    }
-
-    if (defaultSubject) {
-      const subjectSelect = modalBackdrop.querySelector('#modal-contact-subject');
-      if (subjectSelect) {
-        subjectSelect.value = defaultSubject;
-      }
     }
 
     modalBackdrop.classList.add('is-open');
@@ -850,29 +512,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Bind modal triggers (.nav-cta .btn unless it has data-partnership-intent on index.html, and [data-open-enquiry-modal])
-  const enquiryTriggers = document.querySelectorAll('[data-open-enquiry-modal], .nav-cta .btn');
+  // Bind all "Enquire Now" header/mobile-drawer buttons (.nav-cta .btn) and Step 01 cards ([data-open-enquiry-modal])
+  const enquiryTriggers = document.querySelectorAll('.nav-cta .btn, [data-open-enquiry-modal]');
   enquiryTriggers.forEach((trigger) => {
-    // If the button is handled by in-page partnership form scroll on homepage, skip modal hijack
-    if (
-      trigger.hasAttribute('data-partnership-intent') &&
-      document.getElementById('partnership-form')
-    ) {
-      return;
-    }
-
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
-      const preset = trigger.getAttribute('data-modal-subject') || 'facility-inspection';
-      openEnquiryModal(trigger, preset);
+      openEnquiryModal(trigger);
     });
 
     if (trigger.hasAttribute('data-open-enquiry-modal')) {
       trigger.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          const preset = trigger.getAttribute('data-modal-subject') || '';
-          openEnquiryModal(trigger, preset);
+          openEnquiryModal(trigger);
         }
       });
     }
@@ -886,6 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetElement = document.querySelector(hash);
     if (!targetElement) return false;
 
+    // Ensure reveal-on-scroll elements inside target section are immediately visible
     targetElement.classList.add('is-visible');
     targetElement.querySelectorAll('.reveal-on-scroll').forEach((el) => {
       el.classList.add('is-visible');
@@ -896,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (window.location.hash) {
+    // Ensure accurate scroll positioning after layout settles on cross-page anchor navigation
     requestAnimationFrame(() => {
       scrollToHashSection(window.location.hash, false);
     });
@@ -903,10 +557,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
-      if (this.hasAttribute('data-partnership-intent') && document.getElementById('partnership-form')) {
-        return;
-      }
-
       const href = this.getAttribute('href');
       if (!href || href === '#') return;
 

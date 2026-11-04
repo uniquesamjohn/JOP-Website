@@ -6,7 +6,7 @@
   <title>Contact Us — JOP CBT Center</title>
   <meta name="description" content="Get in touch with JOP CBT Center for enquiries regarding computer-based testing, assessment scheduling, and digital registration services.">
   <meta name="keywords" content="Contact JOP CBT Center, CBT Centre Enquiries, Examination Venue Booking, Digital Services Assistance">
-  <meta name="theme-color" content="#1E1008">
+  <meta name="theme-color" content="#0B1F3A">
 
   <!-- Open Graph Metadata -->
   <meta property="og:title" content="Contact Us — JOP CBT Center">
@@ -81,6 +81,74 @@
           <p>
             We welcome enquiries from examination bodies, academic institutions, corporate recruiters, and candidates seeking reliable testing and digital administration support.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4-STEP ENQUIRY PROCESS SECTION
+         ====================================================================== -->
+    <section class="section section-light" aria-labelledby="contact-process-heading">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <div class="process-badge">
+            <span class="process-badge-dot" aria-hidden="true"></span>
+            <span>A SIMPLE PROCESS</span>
+          </div>
+          <h2 id="contact-process-heading" class="section-title">From enquiry to a clearer plan.</h2>
+          <p class="section-description">
+            For visits, practice sessions or institutional requests, these simple steps help us understand what you need.
+          </p>
+        </div>
+
+        <div class="process-steps-grid">
+          <!-- Step 01 (Interactive -> Opens Quick Enquiry Modal) -->
+          <div
+            class="process-step-card process-step-card--interactive reveal-on-scroll"
+            data-open-enquiry-modal
+            role="button"
+            tabindex="0"
+            aria-label="Step 01: Tell us what you need — Click to open the WhatsApp enquiry form"
+          >
+            <span class="process-step-number">STEP 01</span>
+            <h3 class="process-step-title">Tell us what you need</h3>
+            <p class="process-step-desc">
+              Share your assessment, practice, facility or digital service enquiry.
+            </p>
+            <span class="process-step-action" aria-hidden="true">
+              Start an Enquiry
+              <svg viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="process-step-card reveal-on-scroll">
+            <span class="process-step-number">STEP 02</span>
+            <h3 class="process-step-title">Confirm the details</h3>
+            <p class="process-step-desc">
+              We can discuss your request, timing and any relevant requirements.
+            </p>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="process-step-card reveal-on-scroll">
+            <span class="process-step-number">STEP 03</span>
+            <h3 class="process-step-title">Prepare appropriately</h3>
+            <p class="process-step-desc">
+              Review any instructions provided by your examination body or organiser.
+            </p>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="process-step-card reveal-on-scroll">
+            <span class="process-step-number">STEP 04</span>
+            <h3 class="process-step-title">Stay informed</h3>
+            <p class="process-step-desc">
+              Use the contact details and confirmed guidance supplied by the centre.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -201,29 +269,31 @@
             </div>
           </div>
 
-          <!-- C. Contact Form (With Strict "In Progress" submission rule) -->
+          <!-- C. Contact Form (WhatsApp Enquiry Integration) -->
           <div class="contact-form-card reveal-on-scroll">
             <h3 style="font-size: 1.45rem; margin-bottom: 0.5rem;">Send an Enquiry</h3>
             <p style="font-size: 0.95rem; margin-bottom: 1.75rem;">
               Fill out the form below with your details and questions.
             </p>
 
-            <!-- Prompt Non-Negotiable Requirement:
-                 "Because the website does not have a backend or approved external submission service,
-                 do not simulate successful delivery of enquiries. Display a clear 'In Progress' status
-                 for submission functionality and keep actual submission disabled until connected." -->
-            <div class="form-notice" role="alert">
+            <div class="form-notice" role="note">
               <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
               </svg>
               <div>
-                <strong>Online Form Submission Status: In Progress.</strong><br>
-                Direct digital dispatch is currently disabled until connection to our verified mail gateway is established. All fields are accessible for client-side interface evaluation.
+                <strong>Direct WhatsApp Enquiry:</strong><br>
+                Complete the fields below and click <strong>Send Enquiry via WhatsApp</strong>. WhatsApp will open with your enquiry details pre-filled so you can review and send your message directly to JOP CBT Centre.
               </div>
             </div>
 
-            <div id="form-status-alert" class="form-notice" style="display: none; background: #FEF3C7; border-color: #F59E0B; color: #92400E;" tabindex="-1">
-              <strong>Notice:</strong> Online form transmission is currently <strong>In Progress</strong> pending backend server integration. No sensitive information has been transmitted or saved.
+            <div id="form-status-alert" class="form-notice" role="status" aria-live="polite" style="display: none; background: #F0FDF4; border-color: #15803D; color: #14532D;" tabindex="-1">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <strong>Opening WhatsApp...</strong><br>
+                WhatsApp will now open with your pre-filled enquiry details. Please review the message and press <strong>Send</strong> inside WhatsApp to complete your enquiry.
+              </div>
             </div>
 
             <form id="contact-form" novalidate aria-label="Enquiry Form">
@@ -267,12 +337,11 @@
 
               <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
                 <button type="submit" class="btn btn-primary btn-lg" style="flex-grow: 1;">
-                  Validate &amp; Test Enquiry Form
+                  Send Enquiry via WhatsApp
                   <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
                 </button>
-                <span class="badge-in-progress">Submission: In Progress</span>
               </div>
             </form>
           </div>
@@ -327,7 +396,7 @@
           <div class="cta-content">
             <h2 id="contact-cta-heading" class="cta-title">Explore Our Full Range of Services</h2>
             <p class="cta-description">
-              Looking for more details regarding our 250-capacity testing hall, multi-tier hybrid power supply, or student registration guidance? Review our comprehensive service catalog.
+              Looking for more details regarding our 250 primary examination workstations and approximately 50 additional backup computers, multi-tier hybrid power supply, or student registration guidance? Review our comprehensive service catalog.
             </p>
             <div class="cta-actions">
               <a href="services.html" class="btn btn-accent btn-lg">Explore Services</a>

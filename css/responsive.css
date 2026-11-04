@@ -51,6 +51,24 @@
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
+  .service-detail-grid,
+  .service-detail-grid--reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .service-detail-grid--reverse .service-detail-copy {
+    order: 1;
+  }
+
+  .service-detail-grid--reverse .service-detail-box {
+    order: 2;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -62,17 +80,30 @@
     --section-padding-x: 1.25rem;
   }
 
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+
   .site-header {
-    height: 72px;
+    height: auto;
   }
 
   .nav-container {
     height: 72px;
   }
 
+  .site-header.scrolled .nav-container {
+    height: 64px;
+  }
+
   .mobile-nav {
     top: 72px;
     height: calc(100vh - 72px);
+  }
+
+  .site-header.scrolled .mobile-nav {
+    top: 64px;
+    height: calc(100vh - 64px);
   }
 
   .hero-title {
@@ -89,8 +120,17 @@
 
   .cards-grid,
   .cards-grid-3,
-  .gallery-grid {
+  .gallery-grid,
+  .process-steps-grid {
     grid-template-columns: 1fr;
+  }
+
+  .enquiry-modal-header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .enquiry-modal-body {
+    padding: 1.25rem 1.5rem 1.5rem;
   }
 
   .form-row {

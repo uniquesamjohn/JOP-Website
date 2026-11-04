@@ -12,9 +12,9 @@ Developed using semantic **HTML5**, modern **CSS3** (utilizing a custom gradient
 
 ### Key Highlights
 - **100% Vanilla Codebase:** Zero external frameworks, dependencies, or package managers (No React, Next.js, Bootstrap, Tailwind, or jQuery).
-- **Premium Gradient Visual Identity:** Built with custom CSS design tokens featuring sophisticated dark navy, royal blue, and cyan gradients.
-- **Strict Factual Accuracy:** Adheres strictly to client requirements. Board of Directors and unavailable factual details (addresses, phone numbers, verified accreditations) are respectfully and clearly designated with elegant **In Progress** placeholders.
-- **Genuine Facility Assets:** Includes verified facility photographs depicting the entrance gate, solar power arrays, and the 250-capacity CBT testing hall.
+- **Premium Navy Blue & Yellow Visual Identity:** Built with custom CSS design tokens featuring Primary Navy Blue (`#0B1F3A`), Secondary Navy Blue (`#163A63`), and Primary Yellow (`#FFD700` / `#E6C200`).
+- **Strict Factual Accuracy:** Adheres strictly to client requirements. Board of Directors and unavailable factual details (verified accreditations, personnel profiles) are respectfully and clearly designated with elegant **In Progress** placeholders.
+- **Genuine Facility Assets:** Includes verified facility photographs depicting the entrance gate, solar power arrays, and the CBT testing hall (equipped with 250 primary examination workstations and approximately 50 additional backup computers to support operational continuity).
 - **Fully Responsive & Accessible:** Optimized for seamless performance across smartphones, tablets, laptops, and 4K displays with ARIA attributes and reduced-motion considerations.
 
 ---
@@ -27,8 +27,8 @@ JOP Website/
 ├── index.html              # Homepage (Hero, Welcome, Services, CBT Benefits, Infrastructure, CTA, Footer)
 ├── services.html           # Services Page (Detailed breakdown of all 6 core service categories)
 ├── about.html              # About Us (Who We Are, Mission & Vision, Core Values, Board of Directors, Management, Gallery)
-├── resources.html          # Resources & Infrastructure (250-seater, 24/7 Power, Accreditation, CCTV, Biometrics, Internet)
-├── contact.html            # Contact Us (Enquiries, Information Cards, Validated Form, Location Placeholder)
+├── resources.html          # Resources & Infrastructure (250 Primary Workstations + ~50 Backup, 24/7 Power, Accreditation, CCTV, Biometrics, Internet)
+├── contact.html            # Contact Us (Enquiries, Information Cards, Validated WhatsApp Form, Location Map)
 │
 ├── css/
 │   ├── style.css           # Global design tokens, gradients, typography, components, animations
@@ -67,20 +67,29 @@ Because this is a pure static web application, no compilation or build steps are
 The visual identity uses CSS custom properties configured in `css/style.css`:
 
 ```css
-/* Primary Brand Gradient (Midnight Espresso to Roasted Walnut to Glowing Copper) */
---grad-primary: linear-gradient(135deg, #180D07 0%, #442415 52%, #C2642E 100%);
+/* Core Brand Palette (Navy Blue & Yellow) */
+--color-navy-primary: #0B1F3A;
+--color-navy-secondary: #163A63;
+--color-yellow-primary: #FFD700;
+--color-yellow-hover: #E6C200;
+--color-white: #FFFFFF;
+--color-bg-light: #F5F7FA;
+--color-text-dark: #1F2937;
 
-/* Secondary Gradient (Deep Mocha to Warm Chestnut to Luminous Caramel) */
---grad-secondary: linear-gradient(120deg, #24140B 0%, #6E3B20 58%, #D97706 100%);
+/* Primary Brand Gradient (Deep Navy to Primary Navy Blue to Secondary Navy Blue) */
+--grad-primary: linear-gradient(135deg, #071527 0%, #0B1F3A 55%, #163A63 100%);
 
-/* Accent Gradient (Golden Honey to Rich Terracotta) */
---grad-accent: linear-gradient(135deg, #E0853D 0%, #944C21 100%);
+/* Secondary Gradient (Primary Navy Blue to Secondary Navy Blue to Royal Navy) */
+--grad-secondary: linear-gradient(120deg, #0B1F3A 0%, #163A63 60%, #1E4D82 100%);
 
-/* Light Section Gradient (Soft Alabaster Linen to Warm Oat / Milk Latte) */
---grad-light-section: linear-gradient(135deg, #FDFBF7 0%, #F5EFE6 100%);
+/* Accent Gradient (Primary Yellow to Yellow Hover) */
+--grad-accent: linear-gradient(135deg, #FFD700 0%, #E6C200 100%);
 
-/* Dark Premium Gradient (Midnight Espresso to Roasted Mocha to Deep Walnut) */
---grad-dark-premium: linear-gradient(145deg, #120905 0%, #22120A 55%, #3D2012 100%);
+/* Light Section Gradient (Crisp White to Light Background) */
+--grad-light-section: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
+
+/* Dark Premium Gradient (Deepest Navy to Primary Navy to Secondary Navy) */
+--grad-dark-premium: linear-gradient(145deg, #061222 0%, #0B1F3A 55%, #163A63 100%);
 ```
 
 ---
@@ -120,8 +129,8 @@ In `contact.html` and the footer of all pages, replace the `<span class="badge-i
 - **WhatsApp:** Enter official WhatsApp click-to-chat link.
 - **Google Maps:** In `contact.html`, replace the map placeholder with a responsive Google Maps `<iframe>`.
 
-### 4. Connecting the Contact Form to a Backend
-In `js/script.js`, replace the client-side evaluation interceptor inside `contactForm.addEventListener('submit', ...)` with an AJAX/Fetch request or form endpoint (e.g., Formspree, EmailJS, or client-approved server API).
+### 4. Contact Form & WhatsApp Enquiry Redirection
+In `js/script.js`, the `#contact-form` submission handler validates all required fields and redirects enquiries to JOP's official WhatsApp number (`https://wa.me/2348037262757?text=...`) with pre-populated, URL-encoded enquiry details. When an email backend is later activated, the submit handler can be extended with a `fetch()` call to the mail gateway.
 
 ---
 

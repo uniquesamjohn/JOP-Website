@@ -1,7 +1,22 @@
 /* ==========================================================================
-   JOP CBT CENTER — RESPONSIVE STYLESHEET
+   JOP CBT CENTRE — RESPONSIVE STYLESHEET
    Mobile-First and Responsive Adjustments (Desktop, Tablet, Mobile)
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. COMPACT DESKTOP NAVIGATION (Max-Width: 1180px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 1180px) {
+  .desktop-nav .nav-link {
+    font-size: 0.83rem;
+    padding: 0.45rem 0.52rem;
+  }
+
+  .nav-cta .btn-sm {
+    padding: 0.42rem 0.78rem;
+    font-size: 0.8rem;
+  }
+}
 
 /* --------------------------------------------------------------------------
    1. LAPTOP & TABLET (Max-Width: 1024px)
@@ -17,7 +32,8 @@
     text-align: center;
   }
 
-  .hero-badge {
+  .hero-badge,
+  .hero-trust-badge {
     margin-left: auto;
     margin-right: auto;
   }
@@ -26,8 +42,13 @@
     justify-content: center;
   }
 
+  .hero-location-meta {
+    justify-content: center;
+    text-align: left;
+  }
+
   .hero-graphic {
-    max-width: 580px;
+    max-width: 620px;
     margin: 0 auto;
     width: 100%;
   }
@@ -42,14 +63,23 @@
     justify-content: center;
   }
 
+  .trust-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .infra-photo-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .partnership-layout,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
   }
 
   .service-detail-grid,
@@ -107,22 +137,35 @@
   }
 
   .hero-title {
-    font-size: 2.15rem;
+    font-size: 2.1rem;
   }
 
   .hero-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.04rem;
   }
 
   .hero-stat-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
+  .accreditation-grid,
+  .trust-features-grid,
+  .who-we-serve-grid,
+  .infra-photo-strip,
   .cards-grid,
   .cards-grid-3,
   .gallery-grid,
   .process-steps-grid {
     grid-template-columns: 1fr;
+  }
+
+  .accreditation-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .accreditation-logo-box {
+    width: 132px;
+    height: 132px;
   }
 
   .enquiry-modal-header {
@@ -153,21 +196,16 @@
     padding: 3rem 1.5rem;
   }
 
-  .cta-actions {
+  .cta-actions,
+  .hero-actions,
+  .partnership-cta-buttons {
     flex-direction: column;
     width: 100%;
   }
 
-  .cta-actions .btn {
-    width: 100%;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-actions .btn {
+  .cta-actions .btn,
+  .hero-actions .btn,
+  .partnership-cta-buttons .btn {
     width: 100%;
   }
 }
@@ -180,15 +218,23 @@
     height: 36px;
   }
 
-  .card {
-    padding: 1.5rem;
+  .hero-trust-badge {
+    font-size: 0.74rem;
+    padding: 0.4rem 0.85rem;
   }
 
-  .card-glass-dark {
-    padding: 1.5rem;
+  .hero-stat-row {
+    grid-template-columns: 1fr;
   }
 
-  .contact-form-card {
+  .hero-glass-card {
+    padding: 1.35rem;
+  }
+
+  .card,
+  .card-glass-dark,
+  .contact-form-card,
+  .partnership-highlights-card {
     padding: 1.5rem;
   }
 

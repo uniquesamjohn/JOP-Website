@@ -22,6 +22,11 @@
     margin-right: auto;
   }
 
+  .hero-accreditation-highlight {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .hero-actions {
     justify-content: center;
   }
@@ -66,6 +71,7 @@
     order: 2;
   }
 
+  .accreditation-grid,
   .process-steps-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -119,8 +125,11 @@
   }
 
   .cards-grid,
+  .cards-grid-2,
+  [aria-labelledby="why-cbt-heading"] .cards-grid,
   .cards-grid-3,
   .gallery-grid,
+  .accreditation-grid,
   .process-steps-grid {
     grid-template-columns: 1fr;
   }
@@ -162,6 +171,11 @@
     width: 100%;
   }
 
+  .hero-accreditation-highlight {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .hero-actions {
     flex-direction: column;
     width: 100%;
@@ -198,6 +212,10 @@
 
   .placeholder-title {
     font-size: 1.3rem;
+  }
+
+  .accreditation-card {
+    padding: 1.75rem 1.35rem;
   }
 
   .placeholder-status {

@@ -17,6 +17,89 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
+  // 1B. ACCREDITATION SECTION COMPONENT & CONFIG CONTROLLER
+  const initAccreditationSection = () => {
+    const accreditationSection = document.getElementById('accreditation-section');
+    const heroHighlight = document.getElementById('hero-accreditation-highlight');
+    const config = window.JOP_ACCREDITATION_CONFIG;
+
+    if (!config) return;
+
+    const verifiedBodies = Array.isArray(config.bodies)
+      ? config.bodies.filter((body) => body && body.verified !== false)
+      : [];
+
+    // Control Hero Trust Highlight visibility (only shown when enabled and all 3 bodies are verified)
+    if (heroHighlight) {
+      const allThreeVerified =
+        config.enabled &&
+        config.showHeroHighlight !== false &&
+        Array.isArray(config.bodies) &&
+        config.bodies.length >= 3 &&
+        verifiedBodies.length === config.bodies.length;
+
+      if (allThreeVerified) {
+        const highlightTextEl = document.getElementById('hero-accreditation-text');
+        if (highlightTextEl && config.heroHighlightText) {
+          highlightTextEl.textContent = config.heroHighlightText;
+        }
+        heroHighlight.style.display = '';
+      } else {
+        heroHighlight.style.display = 'none';
+      }
+    }
+
+    // Control Accreditation Section visibility and dynamic card rendering
+    if (accreditationSection) {
+      if (!config.enabled || verifiedBodies.length === 0) {
+        accreditationSection.style.display = 'none';
+        return;
+      }
+
+      accreditationSection.style.display = '';
+
+      const tagEl = document.getElementById('accreditation-tag');
+      const headingEl = document.getElementById('accreditation-heading');
+      const descEl = document.getElementById('accreditation-description');
+      const gridEl = document.getElementById('accreditation-cards-grid');
+
+      if (tagEl && config.sectionTag) tagEl.textContent = config.sectionTag;
+      if (headingEl && config.sectionHeading) headingEl.textContent = config.sectionHeading;
+      if (descEl && config.sectionDescription) descEl.textContent = config.sectionDescription;
+
+      if (gridEl) {
+        gridEl.innerHTML = verifiedBodies
+          .map(
+            (body) => `
+          <article class="accreditation-card reveal-on-scroll is-visible" data-accreditation-id="${body.id}">
+            <div class="accreditation-logo-box">
+              <img
+                src="${body.logoSrc}"
+                alt="${body.logoAlt}"
+                class="accreditation-logo"
+                width="124"
+                height="124"
+                loading="lazy"
+              >
+            </div>
+            <h3 class="accreditation-acronym">${body.acronym}</h3>
+            <p class="accreditation-fullname">${body.fullName}</p>
+            <div class="accreditation-badge">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>${body.designation}</span>
+            </div>
+          </article>
+        `
+          )
+          .join('');
+      }
+    }
+  };
+
+  initAccreditationSection();
+
   // 2. ACTIVE NAVIGATION LINK DETECTION & MAGNETIC SLIDING INDICATOR
   // --------------------------------------------------------------------------
   const navLinks = document.querySelectorAll('.nav-link');

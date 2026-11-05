@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="waec-title waec-desc">
+  <title id="waec-title">WAEC — West African Examinations Council</title>
+  <desc id="waec-desc">Emblem of the West African Examinations Council (WAEC)</desc>
+  <defs>
+    <linearGradient id="waecBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B3F8B"/>
+      <stop offset="100%" stop-color="#0F2557"/>
+    </linearGradient>
+    <linearGradient id="waecGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD026"/>
+      <stop offset="100%" stop-color="#D49B00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Circular Seal -->
+  <circle cx="80" cy="80" r="74" fill="#FFFFFF" stroke="url(#waecBlue)" stroke-width="6"/>
+  <circle cx="80" cy="80" r="64" fill="none" stroke="url(#waecGold)" stroke-width="2.5"/>
+
+  <!-- Radiant Sunburst Rays -->
+  <g stroke="url(#waecGold)" stroke-width="2.5" stroke-linecap="round">
+    <line x1="80" y1="28" x2="80" y2="36"/>
+    <line x1="56" y1="33" x2="60" y2="40"/>
+    <line x1="104" y1="33" x2="100" y2="40"/>
+    <line x1="38" y1="48" x2="45" y2="53"/>
+    <line x1="122" y1="48" x2="115" y2="53"/>
+  </g>
+
+  <!-- Inner Crest Shield -->
+  <path d="M46 46 H114 V82 C114 107 80 122 80 122 C80 122 46 107 46 82 Z" fill="url(#waecBlue)" stroke="url(#waecGold)" stroke-width="3"/>
+
+  <!-- Rising Sun & Open Book -->
+  <path d="M62 78 A18 18 0 0 1 98 78 Z" fill="url(#waecGold)"/>
+  <path d="M56 78 H104 V96 Q92 91 80 96 Q68 91 56 96 Z" fill="#FFFFFF"/>
+  <line x1="80" y1="78" x2="80" y2="96" stroke="#0F2557" stroke-width="2"/>
+
+  <!-- Bottom Ribbon Banner -->
+  <rect x="34" y="122" width="92" height="22" rx="11" fill="url(#waecBlue)" stroke="url(#waecGold)" stroke-width="2"/>
+  <text x="80" y="137" text-anchor="middle" fill="#FFD026" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="13" letter-spacing="2">WAEC</text>
+</svg>
+

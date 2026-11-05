@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="neco-title neco-desc">
+  <title id="neco-title">NECO — National Examinations Council</title>
+  <desc id="neco-desc">Emblem of the National Examinations Council (NECO)</desc>
+  <defs>
+    <linearGradient id="necoGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B6E4F"/>
+      <stop offset="100%" stop-color="#074A35"/>
+    </linearGradient>
+    <linearGradient id="necoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4C430"/>
+      <stop offset="100%" stop-color="#C5960C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Circular Seal -->
+  <circle cx="80" cy="80" r="74" fill="#FFFFFF" stroke="url(#necoGreen)" stroke-width="6"/>
+  <circle cx="80" cy="80" r="64" fill="none" stroke="url(#necoGold)" stroke-width="2.5"/>
+
+  <!-- Inner Circle & Academic Laurel Accent -->
+  <circle cx="80" cy="76" r="38" fill="url(#necoGreen)" stroke="url(#necoGold)" stroke-width="3"/>
+
+  <!-- Graduation Mortarboard Cap & Book -->
+  <polygon points="80,48 54,60 80,72 106,60" fill="url(#necoGold)"/>
+  <path d="M64 66 V78 C64 84 96 84 96 78 V66" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+  <line x1="102" y1="62" x2="102" y2="77" stroke="url(#necoGold)" stroke-width="2.2"/>
+  <circle cx="102" cy="78" r="2.5" fill="url(#necoGold)"/>
+
+  <!-- Open Book Base -->
+  <path d="M60 86 Q70 82 80 87 Q90 82 100 86 V98 Q90 94 80 99 Q70 94 60 98 Z" fill="#FFFFFF"/>
+  <line x1="80" y1="87" x2="80" y2="99" stroke="#074A35" stroke-width="1.8"/>
+
+  <!-- Bottom Ribbon Banner -->
+  <rect x="34" y="122" width="92" height="22" rx="11" fill="url(#necoGreen)" stroke="url(#necoGold)" stroke-width="2"/>
+  <text x="80" y="137" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="13" letter-spacing="2">NECO</text>
+</svg>
+

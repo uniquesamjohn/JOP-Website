@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="jamb-title jamb-desc">
+  <title id="jamb-title">JAMB — Joint Admissions and Matriculation Board</title>
+  <desc id="jamb-desc">Emblem of the Joint Admissions and Matriculation Board (JAMB)</desc>
+  <defs>
+    <linearGradient id="jambGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#007A3D"/>
+      <stop offset="100%" stop-color="#005228"/>
+    </linearGradient>
+    <linearGradient id="jambGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5C518"/>
+      <stop offset="100%" stop-color="#C99700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Circular Seal -->
+  <circle cx="80" cy="80" r="74" fill="#FFFFFF" stroke="url(#jambGreen)" stroke-width="6"/>
+  <circle cx="80" cy="80" r="64" fill="none" stroke="url(#jambGold)" stroke-width="2.5" stroke-dasharray="4 3"/>
+
+  <!-- Inner Heraldic Shield -->
+  <path d="M46 42 H114 V82 C114 107 80 123 80 123 C80 123 46 107 46 82 Z" fill="url(#jambGreen)" stroke="url(#jambGold)" stroke-width="3"/>
+
+  <!-- Open Book & Torch of Knowledge Inside Shield -->
+  <path d="M58 68 Q69 64 80 69 Q91 64 102 68 V90 Q91 86 80 91 Q69 86 58 90 Z" fill="#FFFFFF"/>
+  <line x1="80" y1="69" x2="80" y2="91" stroke="#005228" stroke-width="2"/>
+  <path d="M80 48 C84 53 86 57 80 63 C74 57 76 53 80 48 Z" fill="url(#jambGold)"/>
+
+  <!-- Checkmark Star Crest -->
+  <circle cx="80" cy="104" r="8" fill="url(#jambGold)"/>
+  <path d="M76.5 104 L79 106.5 L84 101.5" fill="none" stroke="#005228" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bottom Ribbon Banner -->
+  <rect x="34" y="122" width="92" height="22" rx="11" fill="url(#jambGreen)" stroke="url(#jambGold)" stroke-width="2"/>
+  <text x="80" y="137" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="13" letter-spacing="2">JAMB</text>
+</svg>
+
